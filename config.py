@@ -1,0 +1,14 @@
+INPUT_W = 512
+INPUT_H = 256
+
+# train parameter
+BATCH_SIZE = 16
+EVAL_STEP = 50
+SAVE_STEP = 50
+LR = 0.001
+EPOCH = 1000
+EVAL_BATCH_SIZE = 30
+
+
+# test
+TEST_BATCH_SIZE = 30

@@ -6,8 +6,10 @@ cfg = [16, 16, 'M', 16, 16, 'M', 32, 32, 'M', 64, 64, 'M', 128, 128, 'M']
 class CNN(nn.Module):
     def __init__(self, init_weights=True):
         super(CNN, self).__init__()
+        # convolutional layer
         self.features = make_layers(cfg)
 
+        # full-connected layer
         self.classifier = nn.Sequential(
             nn.Linear(16 * 8 * 128, 1024),
             nn.ReLU(),
@@ -17,6 +19,7 @@ class CNN(nn.Module):
             nn.ReLU(),
             
         )
+        # output
         self.out = nn.Linear(128, 2)
         if init_weights:
             self._initialize_weights()
@@ -46,7 +49,7 @@ def make_layers(cfg):
     layers = []
     in_channels = 3
     for v in cfg:
-        if v == 'M':
+        if v == 'M':  # pooling
             layers += [nn.MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)]
         else:
             conv2d = nn.Conv2d(in_channels, v, kernel_size=3, padding=1)

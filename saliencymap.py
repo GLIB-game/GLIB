@@ -15,35 +15,25 @@ from sklearn.metrics import precision_score
 from sklearn.metrics import recall_score
 from GameDataLoader import GameDataloader
 import config as config
-
-game_type = "l12_plus_l17"
-aug_type = game_type + "_code_plus_rule_randomRGB"
-model_idx = "_base_72_850.pkl"
-# model_name = "/root/Anomaly-Classification/l12_plus_l17_code_plus_rule_RGB_base_models/l12_plus_l17_code_plus_rule_RGB_base_72_850.pkl"
-# test_file_path = "/root/Anomaly-Classification/collect_imgs/realTestImg/test_label.csv"
-
-model_name = "model/" + aug_type + "_models/" + aug_type +"_72_850.pkl"
-test_file_path = "data/images/testDataSet/test_label.csv"
+import argparse
 
 
-def calcu_saliency_map():
-    # model_name = "models/" + aug_type + "_base_155_50.pkl"  # "models_cnn_fc/" + neg_name + "_80.pkl"
-    # test_file_path = "data/realBugImg/test_label.csv"
+def calcu_saliency_map(model_path, test_data_path):
 
-    test_file = pd.read_csv(test_file_path, header=None)
+    test_file = pd.read_csv(test_data_path, header=None)
 
     saliency_map_path = "saliency_map"
     if not os.path.exists(saliency_map_path):
         os.mkdir(saliency_map_path)
 
-    cnn = torch.load(model_name)
+    cnn = torch.load(model_path)
     cnn = cnn.cuda()
     cnn.eval()
 
     for param in cnn.parameters():
         param.requires_gard = False
 
-    test_data = GameDataloader(test_file_path)
+    test_data = GameDataloader(test_data_path)
     test_loader = Data.DataLoader(dataset=test_data, batch_size=config.TEST_BATCH_SIZE, shuffle=False)
 
     test_img_idx = 0
@@ -67,7 +57,7 @@ def calcu_saliency_map():
             for to, sa in zip(test_output, saliency):
                 _img = test_file[0][test_img_idx]
                 # print(_img)
-                np.save(os.path.join(saliency_map_path, _img.split("/")[-1].split(".")[0] + ".npy"), sa)
+                # np.save(os.path.join(saliency_map_path, _img.split("/")[-1].split(".")[0] + ".npy"), sa)
                 scale = 100
                 cam = sa - sa.min()
                 cam = cam / cam.max()
@@ -80,4 +70,10 @@ def calcu_saliency_map():
 
 
 if __name__ == '__main__':
-    calcu_saliency_map()
+    parser = argparse.ArgumentParser()
+    parser.add_argument("-m", "--model", help="model path", type=str)
+    parser.add_argument("-t", "--test_data", help="test data path", type=str, required=True)
+
+    args = parser.parse_args()
+
+    calcu_saliency_map(args.model, args.test_data)

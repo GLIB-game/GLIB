@@ -9,6 +9,7 @@ from torchvision import transforms, utils
 import torchvision.transforms as T
 from PIL import Image
 import numpy as np
+import argparse
 from sklearn.metrics import precision_score
 from sklearn.metrics import recall_score
 from sklearn.metrics import accuracy_score
@@ -19,36 +20,23 @@ from GameDataLoader import GameDataloader
 torch.cuda.set_device(0)
 
 
-game_type = "l12_plus_l17"
-aug_type = "rule_RGB"
-# code_plus_rule_randomRGB
-# code
-# rule_randomRGB
-# rule_RGB
-# code_plus_rule_RGB
-
-base_path = "data/" + game_type + "img"
-aug_name = game_type + "_" + aug_type +"_base"
-
-if not os.path.exists(aug_name + "_models"):
-    os.mkdir(aug_name + "_models")
-
-# print(os.path.join(bb_path, game_type + "_error_" + error_type + "_plus_normal_train.csv"))
-# print(os.path.join(bb_path, game_type + "_error_" + error_type + "_plus_normal_test.csv"))
-
-
-def train():
-    train_data = GameDataloader(os.path.join(base_path, game_type + "_error_" + aug_type + "_plus_normal_train.csv"))
-    eval_data = GameDataloader(os.path.join(base_path, game_type + "_error_" + aug_type + "_plus_normal_test.csv"))
-    # test_data = gameDataloader("/root/Anomaly-Classification/collect_imgs/" + game_type + "img/" + game_type + "_error_real_plus_normal_test.csv")
-    train_loader = Data.DataLoader(dataset=train_data, batch_size=config.BATCH_SIZE, shuffle=True)
+def train(train_data_path, eval_data_path, aug_type, model_path=None):
+    # load DataSet
+    train_data = GameDataloader(train_data_path)
+    eval_data = GameDataloader(eval_data_path)
+    train_loader = Data.DataLoader(dataset=train_data, batch_size=config.TRAIN_BATCH_SIZE, shuffle=True)
     eval_loader = Data.DataLoader(dataset=eval_data, batch_size=config.EVAL_BATCH_SIZE, shuffle=False)
-    # test_loader = Data.DataLoader(dataset=test_data, batch_size=30, shuffle=False)
+
+    # init model
     cnn = CNN()
+    # load from checkpoint
+    if model_path is not None:
+        cnn = torch.load(model_path)
 
     optimizer = torch.optim.Adam(cnn.parameters(), lr=config.LR)   # optimize all cnn parameters
-    loss_func = nn.CrossEntropyLoss()                       # the target label is not one-hotted
+    loss_func = nn.CrossEntropyLoss()  # define loss
 
+    # Use GPU
     cnn = cnn.cuda()
     loss_func = loss_func.cuda()
 
@@ -63,13 +51,13 @@ def train():
             loss = loss.cpu()
             print("loss: {}".format(loss))
 
+            # apply gradients
             loss.backward()
-            optimizer.step()  # apply gradients
+            optimizer.step()
 
+            # Eval model
             if step % config.EVAL_STEP == 0:
-
                 with torch.no_grad():
-                    accuracy = []
                     pred_y_list = []
                     eval_y_list = []
                     for eval_step, (t_x, t_y) in enumerate(eval_loader):
@@ -81,7 +69,6 @@ def train():
                         pred_y = torch.max(eval_output, 1)[1].data.numpy()
                         pred_y_list += list(pred_y)
                         eval_y_list += list(t_y)
-                        accuracy += list(pred_y == t_y.data.numpy().astype(int))
 
                     eval_prec = precision_score(eval_y_list, pred_y_list, pos_label=1)
                     eval_recall = recall_score(eval_y_list, pred_y_list, pos_label=1)
@@ -90,10 +77,22 @@ def train():
                     print('eval precision: {}, recall: {}, accuracy: {}'.format(eval_prec, eval_recall, eval_acc))
 
             if step % config.SAVE_STEP == 0:
-                if not os.path.exists(aug_name + "_models"):
-                    os.mkdir(aug_name + "_models")
-                torch.save(cnn, aug_name + "_models/{}_{}_{}.pkl".format(aug_name, epoch, step))
+                model_save_path = os.path.join("model", aug_type)
+                if not os.path.exists(model_save_path):
+                    os.mkdir(model_save_path)
+                torch.save(cnn, os.path.join(model_save_path, "{}_{}_{}.pkl".format(aug_type, epoch, step)))
 
 
 if __name__ == '__main__':
-    train()
+    parser = argparse.ArgumentParser()
+    parser.add_argument("-m", "--model_path", help="model path", type=str)
+    parser.add_argument("-t", "--train_data", help="train data path", type=str, required=True)
+    parser.add_argument("-e", "--eval_data", help="eval data path", type=str, required=True)
+    parser.add_argument("-a", "--augType", help="augmentation Type",type=str,
+                        required=True, choices=["Base", "Rule(F)", "Rule(R)", "Code", "Code_Rule(F)", "Code_Rule(R)"])
+
+    args = parser.parse_args()
+
+    # print(args.train_data, args.eval_data, args.augType)
+
+    train(args.train_data, args.eval_data, args.augType, args.model_path)

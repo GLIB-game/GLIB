@@ -1,8 +1,9 @@
+# input size
 INPUT_W = 512
 INPUT_H = 256
 
 # train parameter
-BATCH_SIZE = 16
+TRAIN_BATCH_SIZE = 16
 EVAL_STEP = 50
 SAVE_STEP = 50
 LR = 0.001

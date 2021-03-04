@@ -1,4 +1,4 @@
-# GLIB——Game UI Glitch Detection via Bug Understanding
+# GLIB——Towards Automated Test Oracle for Graphically-Rich Applications
 CNN code to detect UI glitch in game apps.
 
 

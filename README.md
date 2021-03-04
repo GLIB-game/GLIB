@@ -56,7 +56,7 @@ data/data_csv:
 
 download pre-trained model from [Google Driver](https://drive.google.com/file/d/1DosAIUJrWfHtrcYITkjGH0tl3mxox6cW/view?usp=sharing)
 
-```
+```shell
 unzip model.zip
 ```
 
@@ -90,7 +90,7 @@ python train.py --train_data train_file_path --eval_data eval_file_path --augTyp
 Example:
 
 ```shell
-python train.py --train_data data/data_csv/Code/Code_train.csv --eval_data data/data_csv/Code/Code_test.csv --augType Code --model_path model/Base/Base.pkl
+python train.py --train_data data/data_csv/Code/Code_train.csv --eval_data data/data_csv/Code/Code_test.csv --augType Code --model_path model/Code/Code.pkl
 ```
 
 ##### Step3: Evaluate Model

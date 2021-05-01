@@ -160,9 +160,16 @@ Batch size in test step.
 #### The correlation between our self-defined code & rule approaches and corresponding UI glitches:
 ![Image](Method_2_UIglitch.png)
 
+#### Reult for Practical Evaluation (RQ4)
 
+|         |       Code        |      Rule(R)      |      Rule(F)      |
+| :-----: | :---------------: | :---------------: | :---------------: |
+|   PC    |         7         |         3         |         1         |
+| Android |        35         |        22         |        15         |
+|   iOS   |        11         |         6         |         5         |
+|  total  | 53 (48 confirmed) | 31 (28 confirmed) | 21 (17 confirmed) |
 
+#### AutoTest FrameWork
 
-
-
+![Image](AutoTestFramework.png)
 

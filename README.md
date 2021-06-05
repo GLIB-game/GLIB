@@ -25,6 +25,7 @@ On Ubuntu:
 ```shell
 git clone --recursive https://github.com/GLIB-game/GLIB.git 
 cd GLIB
+pip install -r requirements.txt
 ```
 
 ##### Step1: Download dataset 

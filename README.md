@@ -1,9 +1,13 @@
 # GLIB——Towards Automated Test Oracle for Graphically-Rich Applications
 CNN code to detect UI glitch in game apps.
 
-### Description:
+### Architecture of GLIB:
 
 ![Image](GLIB_architecture.png)
+
+#### Code-based glitch image generation
+
+![Image](code_based_generation.png)
 
 
 ### Requirements:

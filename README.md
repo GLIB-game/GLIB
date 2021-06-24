@@ -167,6 +167,7 @@ Batch size in test step.
 
 
 ### Supplementary explanation
+------
 
 #### The correlation between our self-defined code & rule approaches and corresponding UI glitches:
 ![Image](Method_2_UIglitch.png)

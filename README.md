@@ -9,9 +9,9 @@ CNN code to detect UI glitch in game apps.
 
 ![Image](code_gen.png)
 
-### Rule-based Generation:
+<!-- ### Rule-based Generation:
 
-![Image](rule_gen.png)
+![Image](rule_gen.png) -->
 
 ### Requirements:
 

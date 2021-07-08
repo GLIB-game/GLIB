@@ -1,6 +1,6 @@
 # GLIB
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.5081365.svg)](https://doi.org/10.5281/zenodo.5081365)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.5081365.svg)](https://doi.org/10.5281/zenodo.5081365) <br>
 CNN-based visual understanding for detecting UI glitches in game Apps
 > GLIB: Towards Automated Test Oracle for Graphically-Rich Applications <br>
 > Paper URL: https://arxiv.org/abs/2106.10507

@@ -40,7 +40,7 @@ pip install -r requirements.txt
 
 ##### Step1: Download dataset 
 
-download the UI image [dataset](https://zenodo.org/record/5081242/files/data.zip?download=1) and unzip:
+download the UI image [dataset](https://doi.org/10.5281/zenodo.5081242) and unzip:
 
 ```shell
 unzip data.zip
@@ -65,7 +65,7 @@ data/data_csv:
 - *data/data_csv/Code_plus_Rule(R)* : dataset for our Code&Rule(R) Augmentation method.
 - *data/data_csv/testDataSet* : test dataset(normal image and real glitch images from 466 test reports).
 
-download the pre-trained [model](https://zenodo.org/record/5081280/files/model.zip?download=1) and unzip:
+download the pre-trained [model](https://doi.org/10.5281/zenodo.5081280) and unzip:
 
 ```shell
 unzip model.zip

@@ -37,7 +37,7 @@ pip install -r requirements.txt
 
 ##### Step1: Download dataset 
 
-download the UI image [dataset](https://doi.org/10.5281/zenodo.5081242)
+download the UI image dataset [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.5081242.svg)](https://doi.org/10.5281/zenodo.5081242)
 
 ```shell
 unzip data.zip

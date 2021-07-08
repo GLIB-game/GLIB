@@ -1,22 +1,21 @@
-# GLIB——Towards Automated Test Oracle for Graphically-Rich Applications
+# GLIB: Towards Automated Test Oracle for Graphically-Rich Applications
+------
 CNN-based visual understanding for detecting UI glitches in Game Apps.
 
-### Architecture:
-
+### Architecture
+------
 ![Image](GLIB_architecture.png)
 
-### Code-based Generation:
-
+### Code-based Generation
+------
 ![Image](code_gen.png)
 
 <!-- ### Rule-based Generation:
 
 ![Image](rule_gen.png) -->
 
-### Requirements:
-
+### Requirements
 ------
-
 On Ubuntu:
 
 - Python3.5.2
@@ -27,9 +26,7 @@ On Ubuntu:
 
 
 ### Installation
-
-----
-
+------
 ##### Step0: Clone the GLIB repository
 
 ```shell
@@ -40,7 +37,7 @@ pip install -r requirements.txt
 
 ##### Step1: Download dataset 
 
-download images dataset from [Google Driver](https://drive.google.com/file/d/1wVPDVDJy6gnf6Fl93rrjsknk1xPl0IBw/view?usp=sharing)
+download the UI image [dataset](https://doi.org/10.5281/zenodo.5081242)
 
 ```shell
 unzip data.zip
@@ -65,7 +62,7 @@ data/data_csv:
 - *data/data_csv/Code_plus_Rule(R)* : dataset for our Code&Rule(R) Augmentation method.
 - *data/data_csv/testDataSet* : test dataset(normal image and real glitch images from 466 test reports).
 
-download pre-trained model from [Google Driver](https://drive.google.com/file/d/1DosAIUJrWfHtrcYITkjGH0tl3mxox6cW/view?usp=sharing)
+download the pre-trained [model](https://doi.org/10.5281/zenodo.5081280)
 
 ```shell
 unzip model.zip
@@ -131,9 +128,7 @@ python saliencymap.py --test_data data/data_csv/testDataSet/testData_test.csv --
 
 
 ### Configuration
-
 ------
-
 Changing hyper-parameters is possible by editing the file [config.py](https://github.com/GLIB-game/GLIB/blob/main/config.py)
 
 ##### config.EPOCH:
@@ -168,7 +163,6 @@ Batch size in test step.
 
 ### Supplementary explanation
 ------
-
 #### The correlation between our self-defined code & rule approaches and corresponding UI glitches:
 ![Image](Method_2_UIglitch.png)
 

@@ -1,7 +1,8 @@
 # GLIB
 
 CNN-based visual understanding for detecting UI glitches in game Apps
->> GLIB: Towards Automated Test Oracle for Graphically-Rich Applications Paper URL: https://arxiv.org/abs/2106.10507
+> GLIB: Towards Automated Test Oracle for Graphically-Rich Applications <br>
+> Paper URL: https://arxiv.org/abs/2106.10507
 
 ## Architecture
 

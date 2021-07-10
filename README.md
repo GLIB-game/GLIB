@@ -21,7 +21,8 @@ CNN-based visual understanding for detecting UI glitches in game Apps
 
 On Ubuntu:
 
-- Python3.5.2
+- python(3.5.2)
+- pip(20.3.4)
 - pytorch(0.4.0)
 - cuda(9.0.176)
 - cudnn(7.4.2)
@@ -30,11 +31,19 @@ On Ubuntu:
 
 ## Installation
 
+##### Step0: Build python virtual environment
+
+```shell
+conda create -n python3.5 python=3.5.2
+conda activate python3.5
+```
+
 ##### Step0: Clone the GLIB repository
 
 ```shell
 git clone --recursive https://github.com/GLIB-game/GLIB.git 
 cd GLIB
+pip install --upgrade pip
 pip install -r requirements.txt
 ```
 

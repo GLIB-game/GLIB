@@ -38,7 +38,7 @@ conda create -n python3.5 python=3.5.2
 conda activate python3.5
 ```
 
-##### Step0: Clone the GLIB repository
+##### Step1: Clone the GLIB repository
 
 ```shell
 git clone --recursive https://github.com/GLIB-game/GLIB.git 
@@ -47,7 +47,7 @@ pip install --upgrade pip
 pip install -r requirements.txt
 ```
 
-##### Step1: Download dataset 
+##### Step2: Download dataset 
 
 download the UI image [dataset](https://doi.org/10.5281/zenodo.5081242) and unzip:
 
@@ -87,7 +87,7 @@ unzip model.zip
 - *model/Code_plus_Rule(F)* : pre-trained model for our Code&Rule(F) Augmentation method.
 - *model/Code_plus_Rule(R)* : pre-trained model for our Code&Rule(R) Augmentation method.
 
-##### Step2: Train CNN Model
+##### Step3: Train CNN Model
 
 Training from scratch:
 
@@ -113,7 +113,7 @@ Example:
 python train.py --train_data data/data_csv/Code/Code_train.csv --eval_data data/data_csv/Code/Code_test.csv --augType Code --model_path model/Code/Code.pkl
 ```
 
-##### Step3: Evaluate Model
+##### Step4: Evaluate Model
 
 ```shell
 python test.py --test_data test_data_path --model model_path
@@ -125,7 +125,7 @@ Example:
 python test.py --test_data data/data_csv/testDataSet/testData_test.csv --model model/Code/Code.pkl
 ```
 
-##### Step4: Generate Saliency Map
+##### Step5: Generate Saliency Map
 
 ```shell
 python saliencymap.py --test_data test_data_path --model model_path

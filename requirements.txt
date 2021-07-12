@@ -7,5 +7,7 @@ pandas==0.24.2
 Pillow==5.4.1
 scipy==1.2.0
 torch==0.4.1
+torchvision==0.2.2.post3
+sklearn
 
 

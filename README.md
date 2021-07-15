@@ -41,11 +41,11 @@ pull source from our docker and start a container
 docker pull qwertymj/glib:0.0.1
 docker container run -it qwertymj/glib:0.0.1 /bin/bash
 ```
-exit container and check the container ID
+open another shell to check the running container ID
 ```shell
 docker ps
 ```
-copy the container ID and push GLIB dataset to the container
+copy the container ID and push our dataset to the container
 ```
 docker cp data [container ID]:/code/data
 ```

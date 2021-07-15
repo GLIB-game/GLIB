@@ -32,9 +32,12 @@ Sign up a docker account from [dockerhub](https://hub.docker.com/)
 ## Installation
 
 #### Step0: Setup docker 
-pull source from dockerhub and start a container
+login with your username and password
 ```shell
-docker login #login with your username and password
+docker login
+```
+pull source from our docker and start a container
+```shell
 docker pull qwertymj/glib:0.0.1
 docker container run -it qwertymj/glib:0.0.1 /bin/bash
 ```

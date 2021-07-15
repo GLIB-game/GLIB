@@ -27,9 +27,25 @@ On Ubuntu:
 - cuda(9.0.176)
 - cudnn(7.4.2)
 
-
+Sign up a docker account from [dockerhub](https://hub.docker.com/) 
 
 ## Installation
+
+##### Step0: Setup docker 
+pull source from dockerhub and run container
+```shell
+docker login <!---login with your username and password--->
+docker pull qwertymj/glib:0.0.1
+docker container run -it qwertymj/glib:0.0.1 /bin/bash
+```
+open another shell to check container ID
+```shell
+docker ps
+```
+copy the container ID and push GLIB dataset to the container
+```
+docker cp data [container ID]:0.0.1:/code/data
+```
 
 ##### Step0: Build python virtual environment
 

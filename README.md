@@ -31,25 +31,6 @@ Sign up a docker account from [dockerhub](https://hub.docker.com/)
 
 ## Installation
 
-#### Step0: Setup docker 
-login with your username and password
-```shell
-docker login
-```
-pull source from our docker and start a container
-```shell
-docker pull qwertymj/glib:0.0.1
-docker container run -it qwertymj/glib:0.0.1 /bin/bash
-```
-open another shell to check the running container ID
-```shell
-docker ps
-```
-copy the container ID and push our dataset to the container
-```
-docker cp data [container ID]:/code/data
-```
-
 #### Step1: Build python virtual environment
 
 ```shell
@@ -66,7 +47,7 @@ pip install --upgrade pip
 pip install -r requirements.txt
 ```
 
-#### Step3: Download dataset 
+#### Step3: Download dataset and model
 
 download the UI image [dataset](https://doi.org/10.5281/zenodo.5081242) and unzip:
 
@@ -106,7 +87,27 @@ unzip model.zip
 - *model/Code_plus_Rule(F)* : pre-trained model for our Code&Rule(F) Augmentation method.
 - *model/Code_plus_Rule(R)* : pre-trained model for our Code&Rule(R) Augmentation method.
 
-#### Step4: Train CNN Model
+#### Step4: Setup docker 
+login with your username and password
+```shell
+docker login
+```
+pull source from our docker and start a container
+```shell
+docker pull qwertymj/glib:0.0.1
+docker container run -it qwertymj/glib:0.0.1 /bin/bash
+```
+open another shell to check the running container ID
+```shell
+docker ps
+```
+copy the container ID and push our dataset to the container
+```
+docker cp data [container ID]:/code/data
+```
+
+
+#### Step5: Train the CNN model
 
 Training from scratch:
 
@@ -120,7 +121,7 @@ Example:
 python train.py --train_data data/data_csv/Code/Code_train.csv --eval_data data/data_csv/Code/Code_test.csv --augType Code
 ```
 
-Training from pre-trained model:
+Training from the pre-trained model:
 
 ```shell
 python train.py --train_data train_file_path --eval_data eval_file_path --augType Type --model_path model_path
@@ -132,7 +133,7 @@ Example:
 python train.py --train_data data/data_csv/Code/Code_train.csv --eval_data data/data_csv/Code/Code_test.csv --augType Code --model_path model/Code/Code.pkl
 ```
 
-#### Step5: Evaluate Model
+#### Step6: Evaluate the model
 
 ```shell
 python test.py --test_data test_data_path --model model_path
@@ -144,7 +145,7 @@ Example:
 python test.py --test_data data/data_csv/testDataSet/testData_test.csv --model model/Code/Code.pkl
 ```
 
-#### Step6: Generate Saliency Map
+#### Step7: Generate saliency map
 
 ```shell
 python saliencymap.py --test_data test_data_path --model model_path

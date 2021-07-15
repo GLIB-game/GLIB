@@ -32,7 +32,7 @@ Sign up a docker account from [dockerhub](https://hub.docker.com/)
 ## Installation
 
 #### Step0: Setup docker 
-pull source from dockerhub and run container
+pull source from dockerhub and start a container
 ```shell
 docker login #login with your username and password
 docker pull qwertymj/glib:0.0.1
@@ -44,7 +44,7 @@ docker ps
 ```
 copy the container ID and push GLIB dataset to the container
 ```
-docker cp data [container ID]:0.0.1:/code/data
+docker cp data [container ID]:/code/data
 ```
 
 #### Step1: Build python virtual environment

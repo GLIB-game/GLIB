@@ -31,14 +31,14 @@ Sign up a docker account from [dockerhub](https://hub.docker.com/)
 
 ## Installation
 
-##### Step0: Setup docker 
+#### Step0: Setup docker 
 pull source from dockerhub and run container
 ```shell
-docker login <!---login with your username and password--->
+docker login #login with your username and password
 docker pull qwertymj/glib:0.0.1
 docker container run -it qwertymj/glib:0.0.1 /bin/bash
 ```
-open another shell to check container ID
+exit container and check the container ID
 ```shell
 docker ps
 ```
@@ -47,14 +47,14 @@ copy the container ID and push GLIB dataset to the container
 docker cp data [container ID]:0.0.1:/code/data
 ```
 
-##### Step0: Build python virtual environment
+#### Step1: Build python virtual environment
 
 ```shell
 conda create -n python3.5 python=3.5.2
 conda activate python3.5
 ```
 
-##### Step1: Clone the GLIB repository
+#### Step2: Clone the GLIB repository
 
 ```shell
 git clone --recursive https://github.com/GLIB-game/GLIB.git 
@@ -63,7 +63,7 @@ pip install --upgrade pip
 pip install -r requirements.txt
 ```
 
-##### Step2: Download dataset 
+#### Step3: Download dataset 
 
 download the UI image [dataset](https://doi.org/10.5281/zenodo.5081242) and unzip:
 
@@ -103,7 +103,7 @@ unzip model.zip
 - *model/Code_plus_Rule(F)* : pre-trained model for our Code&Rule(F) Augmentation method.
 - *model/Code_plus_Rule(R)* : pre-trained model for our Code&Rule(R) Augmentation method.
 
-##### Step3: Train CNN Model
+#### Step4: Train CNN Model
 
 Training from scratch:
 
@@ -129,7 +129,7 @@ Example:
 python train.py --train_data data/data_csv/Code/Code_train.csv --eval_data data/data_csv/Code/Code_test.csv --augType Code --model_path model/Code/Code.pkl
 ```
 
-##### Step4: Evaluate Model
+#### Step5: Evaluate Model
 
 ```shell
 python test.py --test_data test_data_path --model model_path
@@ -141,7 +141,7 @@ Example:
 python test.py --test_data data/data_csv/testDataSet/testData_test.csv --model model/Code/Code.pkl
 ```
 
-##### Step5: Generate Saliency Map
+#### Step6: Generate Saliency Map
 
 ```shell
 python saliencymap.py --test_data test_data_path --model model_path
@@ -159,31 +159,31 @@ python saliencymap.py --test_data data/data_csv/testDataSet/testData_test.csv --
 
 Changing hyper-parameters is possible by editing the file [config.py](https://github.com/GLIB-game/GLIB/blob/main/config.py)
 
-##### config.EPOCH:
+#### config.EPOCH:
 
 The max number of epochs to train the model. Stopping earlier must be done manually (kill).
 
-##### config.TRAIN_BATCH_SIZE:
+#### config.TRAIN_BATCH_SIZE:
 
 Batch size in training.
 
-##### config.SAVE_STEP:
+#### config.SAVE_STEP:
 
 After how many training steps a model should be saved.
 
-##### config.EVAL_STEP:
+#### config.EVAL_STEP:
 
 After how many training steps the model test its performance on evaluation dataset.
 
-##### config.LR:
+#### config.LR:
 
 The learning rate in training.
 
-##### config.EVAL_BATCH_SIZE
+#### config.EVAL_BATCH_SIZE
 
 Batch size in evaluation step.
 
-##### config.TEST_BATCH_SIZE
+#### config.TEST_BATCH_SIZE
 
 Batch size in test step.
 

@@ -102,8 +102,10 @@ open another shell to check the running container ID
 docker ps
 ```
 copy the container ID and push our dataset to the container
-```
+```shell
 docker cp data [container ID]:/code/data
+cd /code
+pip install -r requirements.txt
 ```
 
 

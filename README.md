@@ -29,25 +29,94 @@ On Ubuntu:
 
 Sign up a docker account from [dockerhub](https://hub.docker.com/) 
 
-## Installation
+## Installation and Execution
+### Setup
 
-#### Step1: Build python virtual environment
+#### Method1: Very simple: pull a Docker image (Recommanded)
+
+Step1: Login with your username and password
+```shell
+docker login
+```
+Step2: Pull source from our docker and start a container
+```shell
+docker pull qwertymj/glib:0.0.1
+docker container run -it qwertymj/glib:0.0.1 /bin/bash
+```
+Step3: Open another shell to check the running container ID
+```shell
+docker ps
+```
+Step4: Copy the container ID and push our dataset to the container
+```shell
+docker cp data [container ID]:/code/data
+cd /code
+pip install -r requirements.txt
+```
+
+#### Method2: A bit harder: build a Docker image
+Step1: Clone repo
+```shell
+git clone --recursive https://github.com/GLIB-game/GLIB.git
+```
+Step2: Build docker image
+```shell
+cd GLIB
+sudo docker image build -t qwertymj/glib:0.0.1 .
+```
+Step3: Start the docker
+```shell
+docker container run -it qwertymj/glib:0.0.1 /bin/bash
+```
+Step4: Install dependencies
+```shell
+pip install -r requirements.txt
+```
+#### Method3: Hard: set up the environment manually (Not Recommanded)
+First you should make sure your linux system has installed cuda(9.0.176) and cudnn(7.4.2)
+
+Step1: Install dependencies
+```shell
+apt-get update && \
+apt-get install -y wget \
+gnupg \
+apt-transport-https \
+tzdata \
+net-tools \
+dnsutils \
+iproute2 \
+gcc \
+tmux \
+htop \
+git \
+vim \
+sudo \
+cmake \
+libgl1-mesa-glx \
+libglib2.0-0 \
+openssh-server
+```
+
+Step2: Build python virtual environment
 
 ```shell
 conda create -n python3.5 python=3.5.2
 conda activate python3.5
 ```
 
-#### Step2: Clone the GLIB repository
+Step3: Clone the GLIB repository
 
 ```shell
-git clone --recursive https://github.com/GLIB-game/GLIB.git 
+git clone --recursive https://github.com/GLIB-game/GLIB.git
+```
+Step4: Install python dependencies
+```shell
 cd GLIB
 pip install --upgrade pip
 pip install -r requirements.txt
 ```
 
-#### Step3: Download dataset and model
+### Download dataset and model(data preparation): 
 
 download the UI image [dataset](https://doi.org/10.5281/zenodo.5081242) and unzip:
 
@@ -87,29 +156,8 @@ unzip model.zip
 - *model/Code_plus_Rule(F)* : pre-trained model for our Code&Rule(F) Augmentation method.
 - *model/Code_plus_Rule(R)* : pre-trained model for our Code&Rule(R) Augmentation method.
 
-#### Step4: Setup docker 
-login with your username and password
-```shell
-docker login
-```
-pull source from our docker and start a container
-```shell
-docker pull qwertymj/glib:0.0.1
-docker container run -it qwertymj/glib:0.0.1 /bin/bash
-```
-open another shell to check the running container ID
-```shell
-docker ps
-```
-copy the container ID and push our dataset to the container
-```shell
-docker cp data [container ID]:/code/data
-cd /code
-pip install -r requirements.txt
-```
 
-
-#### Step5: Train the CNN model
+### Train the CNN model
 
 Training from scratch:
 
@@ -135,7 +183,7 @@ Example:
 python train.py --train_data data/data_csv/Code/Code_train.csv --eval_data data/data_csv/Code/Code_test.csv --augType Code --model_path model/Code/Code.pkl
 ```
 
-#### Step6: Evaluate the model
+### Evaluate the model
 
 ```shell
 python test.py --test_data test_data_path --model model_path
@@ -147,7 +195,7 @@ Example:
 python test.py --test_data data/data_csv/testDataSet/testData_test.csv --model model/Code/Code.pkl
 ```
 
-#### Step7: Generate saliency map
+### Generate saliency map
 
 ```shell
 python saliencymap.py --test_data test_data_path --model model_path

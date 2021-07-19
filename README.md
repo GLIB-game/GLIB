@@ -47,11 +47,14 @@ Step3: Open another shell to check the running container ID
 ```shell
 docker ps
 ```
-Step4: Copy the container ID and push our dataset to the container
+Step4:  [Download dataset and model](# Download dataset and model)
+
+Step5: Copy the container ID and push our dataset to the container
+
 ```shell
 docker cp data [container ID]:/code/data
+docker cp model [container ID]:/code/model
 cd /code
-pip install -r requirements.txt
 ```
 
 #### Method2: A bit harder: build a Docker image
@@ -68,11 +71,18 @@ Step3: Start the docker
 ```shell
 docker container run -it qwertymj/glib:0.0.1 /bin/bash
 ```
-Step4: Install dependencies
+Step4: [Download dataset and model](# Download dataset and model)
+
+Step5: Copy the container ID and push our dataset to the container
+
 ```shell
-pip install -r requirements.txt
+docker cp data [container ID]:/code/data
+docker cp model [container ID]:/code/model
+cd /code
 ```
+
 #### Method3: Hard: set up the environment manually (Not Recommanded)
+
 First you should make sure your linux system has installed cuda(9.0.176) and cudnn(7.4.2)
 
 Step1: Install dependencies
@@ -116,7 +126,7 @@ pip install --upgrade pip
 pip install -r requirements.txt
 ```
 
-### Download dataset and model (data preparation)
+### Download dataset and model: 
 
 download the UI image [dataset](https://doi.org/10.5281/zenodo.5081242) and unzip:
 

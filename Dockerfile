@@ -45,3 +45,15 @@ ln -sf /usr/bin/python3.5 /usr/bin/python3
 RUN wget https://bootstrap.pypa.io/pip/3.5/get-pip.py
 RUN python get-pip.py
 
+RUN pip install --upgrade pip
+RUN pip install -i https://mirrors.aliyun.com/pypi/simple/ imutils==0.5.4 \
+matplotlib==3.0.3 \
+numpy==1.14.5 \
+opencv-contrib-python==4.4.0.42 \
+opencv-python==3.4.0.14 \
+pandas==0.24.2 \
+Pillow==5.4.1 \
+scipy==1.2.0 \
+torch==0.4.0 \
+torchvision==0.2.2.post3 \
+sklearn

@@ -116,7 +116,7 @@ pip install --upgrade pip
 pip install -r requirements.txt
 ```
 
-### Download dataset and model(data preparation): 
+### Download dataset and model (data preparation)
 
 download the UI image [dataset](https://doi.org/10.5281/zenodo.5081242) and unzip:
 

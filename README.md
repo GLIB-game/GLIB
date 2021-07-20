@@ -82,7 +82,7 @@ docker login
 Step2: Pull source from our docker and start a container
 ```shell
 docker pull qwertymj/glib:0.0.1
-docker container run -it --gpus qwertymj/glib:0.0.1 /bin/bash
+docker container run -it --gpus all qwertymj/glib:0.0.1 /bin/bash
 ```
 Step3: Open another shell to check the running container ID
 ```shell
@@ -109,9 +109,9 @@ Step2: Build docker image
 cd GLIB
 sudo docker image build -t qwertymj/glib:0.0.1 .
 ```
-Step3: Start the docker
+Step3: Start the container
 ```shell
-docker container run -it --gpus qwertymj/glib:0.0.1 /bin/bash
+docker container run -it --gpus all qwertymj/glib:0.0.1 /bin/bash
 ```
 Step4: [Download dataset and model](#Download)
 

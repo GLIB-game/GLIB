@@ -24,9 +24,9 @@ On Ubuntu:
 - python(3.5.2)
 - pip(20.3.4)
 - pytorch(0.4.0)
-- cuda (you can follow the instructions from https://developer.nvidia.com/cuda-downloads?target_os=Linux&target_arch=x86_64&Distribution=Ubuntu&target_version=18.04&target_type=deb_local)
-- docker (you can follow the instructions from https://docs.docker.com/engine/install/ubuntu/)
-- nvidia-docker (you can follow the installation instructions on https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/install-guide.html#docker)
+- [cuda](https://developer.nvidia.com/cuda-downloads?target_os=Linux&target_arch=x86_64&Distribution=Ubuntu&target_version=18.04&target_type=deb_local)
+- [docker](https://docs.docker.com/engine/install/ubuntu/)
+- [nvidia-docker](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/install-guide.html#docker)
 
 Sign up a docker account from [dockerhub](https://hub.docker.com/) 
 

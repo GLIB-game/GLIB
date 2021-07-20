@@ -47,7 +47,7 @@ Step3: Open another shell to check the running container ID
 ```shell
 docker ps
 ```
-Step4:  [Download dataset and model](# Download dataset and model)
+Step4:  [Download dataset and model](#Download)
 
 Step5: Copy the container ID and push our dataset to the container
 
@@ -55,6 +55,7 @@ Step5: Copy the container ID and push our dataset to the container
 docker cp data [container ID]:/code/data
 docker cp model [container ID]:/code/model
 cd /code
+pip install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple 
 ```
 
 #### Method2: A bit harder: build a Docker image
@@ -71,7 +72,7 @@ Step3: Start the docker
 ```shell
 docker container run -it qwertymj/glib:0.0.1 /bin/bash
 ```
-Step4: [Download dataset and model](# Download dataset and model)
+Step4: [Download dataset and model](#Download)
 
 Step5: Copy the container ID and push our dataset to the container
 
@@ -79,6 +80,7 @@ Step5: Copy the container ID and push our dataset to the container
 docker cp data [container ID]:/code/data
 docker cp model [container ID]:/code/model
 cd /code
+pip install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple 
 ```
 
 #### Method3: Hard: set up the environment manually (Not Recommanded)
@@ -123,10 +125,10 @@ Step4: Install python dependencies
 ```shell
 cd GLIB
 pip install --upgrade pip
-pip install -r requirements.txt
+pip install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple 
 ```
 
-### Download dataset and model: 
+### <span id="Download">Download dataset and model</span>: 
 
 download the UI image [dataset](https://doi.org/10.5281/zenodo.5081242) and unzip:
 
